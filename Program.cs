@@ -6,7 +6,7 @@ namespace GuessMyNumber
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Guess My Number");
         }
     }
 }
