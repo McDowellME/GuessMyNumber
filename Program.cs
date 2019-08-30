@@ -12,7 +12,7 @@ namespace GuessMyNumber
         static int middleOfArray = ((max - min) / 2) + min; //finds middle number of array by subtracting the min number from max number then dividing by two.  You must add them min number back to get the actual number and not the index of the middle number.
         static int meanOfArray = ((max - min) / 2) + 1; //finds the mean of the array (the index of the middle) by subtracting the min number from the max number then dividing by two then adding one.
         
-        public static void implementBisectionAlgorithm(int inputNumber)
+        public static void ImplementBisectionAlgorithm(int inputNumber)
         {
             //do-while loop.  while input number does not equal middle of array, perform these checks 
             //to produce new array above or below middle number and create new middle number
@@ -72,7 +72,7 @@ namespace GuessMyNumber
             Console.WriteLine("Bingo!");
         }
 
-        public static void humanPlaysGuessMyNumber(int inputNumber)
+        public static void HumanPlaysGuessMyNumber(int inputNumber)
         {            
             if (inputNumber == RandomNumberHelper.computerNumber)
             {
@@ -83,36 +83,66 @@ namespace GuessMyNumber
                 Console.WriteLine("Too high!");
                 string userInput = Console.ReadLine();
                 int userInputInteger = Int32.Parse(userInput);
-                humanPlaysGuessMyNumber(userInputInteger);
+
+                if(userInputInteger == inputNumber)
+                {
+                    Console.WriteLine($"That number looks familiar. How about you try a LOWER number than {userInputInteger}?");
+                    userInput = Console.ReadLine();
+                    userInputInteger = Int32.Parse(userInput);
+                    HumanPlaysGuessMyNumber(userInputInteger);
+                }
+                else
+                {
+                    HumanPlaysGuessMyNumber(userInputInteger);
+                }                
             }
             else //if (inputNumber < RandomNumberHelper.computerNumber)
             {
                 Console.WriteLine("Too low!");
                 string userInput = Console.ReadLine();
                 int userInputInteger = Int32.Parse(userInput);
-                humanPlaysGuessMyNumber(userInputInteger);
+
+                if ( userInputInteger == inputNumber)
+                {
+                    Console.WriteLine($"That number looks familiar. How about you try a HIGHER number than {userInputInteger}?");
+                    userInput = Console.ReadLine();
+                    userInputInteger = Int32.Parse(userInput);
+                    HumanPlaysGuessMyNumber(userInputInteger);
+                }
+                else
+                {
+                    HumanPlaysGuessMyNumber(userInputInteger);
+                }                
             }            
         }
 
-        public static void computerPlaysGuessMyNumber(int inputNumber)
+        public static void ComputerPlaysGuessMyNumber()
         {
-            //TODO:
+            string yesOrNo;
+            do
+            {
+                Console.WriteLine($"Is your number {RandomNumberHelper.RandomNumberGenerator()}?");
+                Console.WriteLine("Select y or n:");
+                yesOrNo = Console.ReadLine().ToLower();
+            }
+            while (yesOrNo is "n");
+            Console.WriteLine("Beep Boop. I did it!");
+        }
+        public static void RunGame()
+        {
+            Console.WriteLine("Let's Play Guess My Number!\n");
+            Console.WriteLine("What would you like to do?\n");
+            Console.WriteLine("1. See a bisection algorithm\n" +
+                                "2. Guess the computer's number\n" +
+                                "3. Have the computer guess your number");
+            Console.WriteLine("Choose 1, 2 , or 3:");
+            string userSelection = Console.ReadLine();
+            int userSelectionInteger = Int32.Parse(userSelection);
+            Player.ChoosePlayer(userSelectionInteger);
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Guess My Number!\n\nEnter a number between 1 and 10. \n");
-            string userInput = Console.ReadLine();
-            int userInputInteger = Int32.Parse(userInput);
-            implementBisectionAlgorithm(userInputInteger);
-
-            Console.WriteLine("Guess the computer's number!\n");
-            RandomNumberHelper.randomNumberGenerator();
-            ArrayHelper.arrayGenerator(1, 1000);
-            Console.WriteLine("The computer has chosen a number.\n");
-            Console.WriteLine("What is your guess between 1 and 1000?\n");
-            string humanInput = Console.ReadLine();
-            int humanInputInteger = Int32.Parse(humanInput);
-            humanPlaysGuessMyNumber(humanInputInteger);
+            RunGame();         
         }
     }
 }

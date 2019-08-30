@@ -9,7 +9,7 @@ namespace GuessMyNumber
     {        
         public static int[] myArray;
         
-        public static void arrayGenerator(int min, int max)
+        public static void ArrayGenerator(int min, int max)
         {
             myArray = Enumerable.Range(min, max).ToArray();
         }        
