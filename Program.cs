@@ -55,8 +55,10 @@ namespace GuessMyNumber
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Guess My Number!\n");
-            findNumber(7);
+            Console.WriteLine("Guess My Number!\n Enter a number between 1 and 10. \n");
+            string userInput = Console.ReadLine();
+            int userInputInteger = Int32.Parse(userInput);
+            findNumber(userInputInteger);
         }
     }
 }
