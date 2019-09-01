@@ -13,5 +13,11 @@ namespace GuessMyNumber
         }
 
         public static int computerNumber = RandomNumberGenerator();
+
+        public static int BisectionNumberGenerator(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace GuessMyNumber
             string userInput = Console.ReadLine();
             int userInputInteger = Int32.Parse(userInput);
             Program.ImplementBisectionAlgorithm(userInputInteger);
+            ArrayHelper.ArrayGenerator(1, 10);
         }
         public static void HumanPlays()
         {
@@ -42,10 +43,9 @@ namespace GuessMyNumber
         }
         public static void ComputerPlays()
         {
-            Console.WriteLine("Beep Boop.\nI am the computer.  Let me guess your number between 1 and 1000.\nBeep Boop.");
-            RandomNumberHelper.RandomNumberGenerator();
-            ArrayHelper.ArrayGenerator(1, 1000);
-            Program.ComputerPlaysGuessMyNumber();
+            Console.WriteLine("Beep Boop.\nI am the computer.  Let me guess your number between 1 and 100.\nBeep Boop.");
+            ArrayHelper.ArrayGenerator(1, 100);
+            Program.ComputerPlaysGuessMyNumber(1, 100);
         }
     }
 }

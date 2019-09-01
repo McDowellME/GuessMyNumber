@@ -116,17 +116,34 @@ namespace GuessMyNumber
             }            
         }
 
-        public static void ComputerPlaysGuessMyNumber()
+        public static void ComputerPlaysGuessMyNumber(int start, int end)
         {
+            int computerGuess = RandomNumberHelper.BisectionNumberGenerator(start, end);
             string yesOrNo;
-            do
+
+            Console.WriteLine($"Is your number {computerGuess}?");
+            Console.WriteLine("Select y or n:");
+            yesOrNo = Console.ReadLine().ToLower();
+
+            if (yesOrNo is "y")
             {
-                Console.WriteLine($"Is your number {RandomNumberHelper.RandomNumberGenerator()}?");
-                Console.WriteLine("Select y or n:");
-                yesOrNo = Console.ReadLine().ToLower();
+                Console.WriteLine("Beep Boop. I did it!");
             }
-            while (yesOrNo is "n");
-            Console.WriteLine("Beep Boop. I did it!");
+            else
+            {
+                Console.WriteLine("Is your number:\n1. Higher\n2. Lower?");
+                string userInput = Console.ReadLine();
+                int userInputInteger = Int32.Parse(userInput);
+
+                if(userInputInteger == 1)
+                {
+                    ComputerPlaysGuessMyNumber(computerGuess + 1, end);
+                }
+                else
+                {
+                    ComputerPlaysGuessMyNumber(start, computerGuess - 1);
+                }
+            }                    
         }
         public static void RunGame()
         {
